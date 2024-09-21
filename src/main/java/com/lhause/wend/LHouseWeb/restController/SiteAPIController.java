@@ -30,7 +30,8 @@ public class SiteAPIController {
         if(user == null)
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         else{
-            var session = request.getSession();       
+            var session = request.getSession();      
+            
             session.setAttribute("current-user", user);
             
             return new ResponseEntity<>(HttpStatus.FOUND);

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Funcionario Home</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/bootstrap/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/Style.css}">
+</head>
+
+<body>
+
+    <main class="container">
+        <br><br>
+        <div class="row home">
+             <h1>Bem Vindo de volta <span th:text="${nome}"></span></h1>
+            <div>
+                <a class="text-black" th:href="@{/loja/historico/vendas}"><button>Historico de Vendas</button></a>
+                <a class="text-black" th:href="@{/cadastro/editar}"><button>Editar cadastro</button></a>
+                    
+                <a class="text-black" th:href="@{/logout}"><button class="btn btn-danger">Sair</button></a>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
