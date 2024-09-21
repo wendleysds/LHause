@@ -3,7 +3,6 @@ package com.lhause.wend.LHouseWeb.service;
 import com.lhause.wend.LHouseWeb.data.UserEntity;
 import com.lhause.wend.LHouseWeb.data.UserRepository;
 import com.lhause.wend.LHouseWeb.model.Criptografar;
-import com.lhause.wend.LHouseWeb.model.UserLoginData;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,8 +27,8 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
     
-    public UserEntity findUserByLoginData(UserLoginData data){
-        return userRepository.findByLoginAndPassword(data.getLogin(), Criptografar.md5(data.getPassword()));
+    public UserEntity findUser(String login, String password){
+        return userRepository.findByLoginAndPassword(login, Criptografar.md5(password));
     }
     
     public UserEntity updateUser(Integer id, UserEntity userRequest){
