@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script th:src="@{/jquery/jquery.js}"></script>
+    <link rel="stylesheet" th:href="@{/bootstrap/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/Style.css}">
+</head>
+
+<body>
+
+    <main class="container">
+        <br><br><br><br>
+        <div class="row">
+            <h1 class="text-center">Bem Vindo ao LHause!!</h1>
+            <form class="login-pag-form form-center" id="loginForm">
+                <div>
+                    <br>
+                    <label for="txtLogin">Login</label> <br>
+                    <input type="text" name="login" id="txtLogin"> <br>
+                    <label for="txtPassword">Senha</label> <br>
+                    <input type="password" name="password" id="txtPassword"> <br>
+                    <button><a th:href="@{/cadastro/usuario}">Esqueceu a senha?</a></button> <br>
+                </div>
+                <br>
+                <article class="text-center">
+                    <input class="btn btn-success" type="submit" value="Entrar">
+                </article>
+            </form>
+        </div>
+    </main>
+    <script th:src="@{/js/login.js}"></script>
+    <script th:href="@{/bootstrap/bootstrap.js}"></script>
+</body>
+
+</html>
