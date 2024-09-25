@@ -1,4 +1,4 @@
-package com.lhause.wend.LHouseWeb.model;
+package com.lhause.wend.LHouseWeb.Utils;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;

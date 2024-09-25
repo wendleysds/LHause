@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Agendar</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/bootstrap/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/Style.css}">
+    <script th:src="@{/jquery/jquery.js}"></script>
+</head>
+
+<body>
+
+    <main class="agendar container">
+        <h1>Agendar</h1>
+        <div class="row">
+            <div class="col-sm-6">
+                <form id="formId">
+                    <label for="dateData">Informe a data</label> <br>
+                    <input type="date" name="data" id="dateData" required th:min="${today}" th:value="${today}"> <br>
+                    <label for="numTempo">Quantas horas ficará utilizando o nosso computador?</label> <br>
+                    <input type="number" name="tempo" id="numTempo" required> <br>
+                    <input class="btn btn-success" type="submit" value="Agendar">
+                </form>
+                <a class="text-white" th:href="@{/agenda/cadastrar}"><button class="btn btn-secondary">Voltar</button></a>
+            </div>
+            <div class="col-sm-1">
+                <div class="agendar-tabela">
+                    <p>Tabela de preços</p>
+                    <ul>
+                        <li>1h: R$4,00</li>
+                        <li>2h: R$7,00</li>
+                        <li>4h: R$13,00</li>
+                        <li>6h: R$20,00</li>
+                        <li>+8h: R$40,00</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="computadorId" th:value="${computadorId}">
+    </main>
+    <script th:src="@{/js/postAgenda.js}"></script>
+</body>
+
+</html>

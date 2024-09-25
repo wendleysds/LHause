@@ -16,6 +16,7 @@ public class SiteController {
     @GetMapping("/")
     public String index(HttpServletRequest request){
         var session = request.getSession();       
+        
         if(session.getAttribute("current-user") != null){
             return "redirect:/home";
         }
@@ -26,6 +27,7 @@ public class SiteController {
     @GetMapping("/login")
     public String login(HttpServletRequest request){
         var session = request.getSession();       
+        
         if(session.getAttribute("current-user") != null){
             return "redirect:/home";
         }

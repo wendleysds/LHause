@@ -12,8 +12,8 @@ form.addEventListener("submit", (e) => {
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(loginData),
-        complete: function(xhr, textStatus){
-            if(xhr.status == 302){
+        complete: function(xhr){
+            if(xhr.status == 200){
                 window.location.href = ("/home");
             }
             else{

@@ -1,5 +1,6 @@
 package com.lhause.wend.LHouseWeb.restController;
 
+import com.lhause.wend.LHouseWeb.data.UserEntity;
 import com.lhause.wend.LHouseWeb.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -34,7 +35,7 @@ public class SiteAPIController {
             
             session.setAttribute("current-user", user);
             
-            return new ResponseEntity<>(HttpStatus.FOUND);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
     }
 }

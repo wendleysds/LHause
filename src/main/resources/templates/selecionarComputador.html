@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Selecionar Computador</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/bootstrap/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/Style.css}">
+</head>
+
+<body>
+
+    <main class="agendamento container">
+        <h2>Escolha um computador</h2>
+        <hr>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Jogos</th>
+                    <th>Especificações</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="computador : ${computadores}">
+                    <td th:text="${computador.jogos}"></td>
+                    <td th:text="${computador.especificacoes}"></td>
+                    <td>
+                        <a class="text-black" th:href="@{/agenda/cadastrar/{id}(id=${computador.id})}"><button>Selecionar</button></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <a class="text-white" th:href="@{/agenda}"><button class="btn btn-secondary">Voltar</button></a>
+        </div>
+    </main>
+</body>
+
+</html>
