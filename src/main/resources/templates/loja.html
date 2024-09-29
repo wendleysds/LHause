@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Loja</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/bootstrap/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/Style.css}">
+    <script th:src="@{/jquery/jquery.js}"></script>
+</head>
+
+<body>
+    <main class="container">
+        <br>
+        <h1 class="text-center">Loja</h1>
+        <hr>
+        <br>
+        <table class="table table-striped" id="table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Tipo</th>
+                    <th>Valor</th>
+                    <th>Estoque</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+            </tbody>
+        </table>
+        <a class="text-white" th:href="@{/home}"><button onclick="setCarrinho()" class="btn btn-secondary">Voltar</button>></a>
+        <a class="text-white" th:href="@{/loja/carrinho}"><button onclick="setCarrinho()" class="btn btn-primary">Carrinho</button>></a>
+    </main>
+    <script th:src="@{/js/getProdutos.js}"></script>
+</body>
+
+</html>

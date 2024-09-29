@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Finalizar Compra</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/css/finalizarCompra.css}">
+    <script th:src="@{/jquery/jquery.js}"></script>
+</head>
+
+<body>
+    <main class="center">
+        <a class="text-black" th:href="@{/loja/carrinho}"><button>Cancelar Pagamento</button></a>
+        <form class="container" th:action="@{/loja/compra/finalizar}" th:object="${compra}" method="POST">
+            <article id="pagamento-cartao" class="cartao-area">
+                <div class="text-center"><b>PAGAMENTO CARTÃO DE CRÉDITO</b></div> <br>
+                <div class="row">
+                    <div class="input-area offset-3 col-6">
+                        <label for="numeroC">Numero</label>
+                        <input type="text" name="numeroCartao" id="numeroC" required th:field="*{numeroCartao}">
+                        <span hidden id="invalido" style="font-size: 12px;">Número de cartão invalido</span> <br><br>
+                        <label for="titularC">Titular</label>
+                        <input type="text" name="titularText" id="titularC" required> <br><br>
+                        <label for="codSegC">Cód. Segurança</label>
+                        <input type="text" name="codSec" id="codSegC" required> <br><br>
+                        <label for="parcelaS">Parcelas</label>
+                        <select name="numeroParcelas" id="parcelaS" th:field="*{numeroParcelas}">
+                            <option value="1" selected>1x</option>
+                            <option value="2">2x</option>
+                            <option value="5">3x</option>
+                            <option value="10">4x</option>
+                            <option value="5">5x</option>
+                        </Select>
+                    </div>
+                </div>
+                <br>
+            </article>
+            <article class="confirm-area">
+                <p><span class="negrito">Total: R$</span><span th:text="${total}"></span></p>
+                <input type="submit" value="Pagar">
+            </article>
+        </form>
+        <br><br>
+    </main>
+</body>
+</html>

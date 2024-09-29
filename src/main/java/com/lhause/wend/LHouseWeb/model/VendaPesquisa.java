@@ -1,5 +1,6 @@
 package com.lhause.wend.LHouseWeb.model;
 
+import com.lhause.wend.LHouseWeb.data.UserEntity;
 import java.util.List;
 import org.springframework.stereotype.Component;
 
@@ -9,34 +10,21 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class VendaPesquisa {
-    private Integer vendaID;
-    private Integer idCliente;
-    private String nomeCliente;
+    
+    private UserEntity cliente;
     private Venda venda;
     private List<CarrinhoProduto> produtos;
 
     public Integer getVendaID() {
-        return vendaID;
+        return venda.getId();
     }
 
-    public void setVendaID(Integer vendaID) {
-        this.vendaID = vendaID;
+    public UserEntity getCliente() {
+        return cliente;
     }
 
-    public Integer getIdCliente() {
-        return idCliente;
-    }
-
-    public void setIdCliente(Integer idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public String getNomeCliente() {
-        return nomeCliente;
-    }
-
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
+    public void setCliente(UserEntity cliente) {
+        this.cliente = cliente;
     }
 
     public Venda getVenda() {

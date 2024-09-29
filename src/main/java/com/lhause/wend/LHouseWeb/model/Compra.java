@@ -1,5 +1,6 @@
 package com.lhause.wend.LHouseWeb.model;
 
+import java.util.List;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,6 +12,7 @@ public class Compra {
     private String tipoPagamento;
     private String numeroCartao;
     private Integer numeroParcelas;
+    private List<CarrinhoProduto> produtos;
     private Double total;
 
     public String getTipoPagamento() {
@@ -37,11 +39,27 @@ public class Compra {
         this.numeroParcelas = numeroParcelas;
     }
 
-    public Double getTotal() {
+    public List<CarrinhoProduto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<CarrinhoProduto> produtos) {
+        this.produtos = produtos;
+    }
+    
+    public Double getTotal() { 
         return total;
     }
 
     public void setTotal(Double total) {
         this.total = total;
+    }
+    
+    public Double getTotalCompra() {
+        double total = 0;
+        for(var produtoCarrinho : produtos){
+            total += produtoCarrinho.getTotal();
+        }      
+        return total;
     }
 }

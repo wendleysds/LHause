@@ -6,8 +6,6 @@ import com.lhause.wend.LHouseWeb.service.AgendaService;
 import com.lhause.wend.LHouseWeb.service.ComputadorService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,17 +34,17 @@ public class AgendaAPIController {
     
     @GetMapping("")
     public ResponseEntity<List<AgendaEntity>> getAllAgenda(@PathVariable("id") Integer id){
-        return new ResponseEntity(agendaService.findAllAgendas(), HttpStatus.OK);
+        return ResponseEntity.ok(agendaService.findAllAgendas());
     }
     
     @GetMapping("/{id}")
     public ResponseEntity<AgendaEntity> geAgendaById(@PathVariable("id") Integer id){
-        return new ResponseEntity(agendaService.findAgendaById(id), HttpStatus.OK);
+        return ResponseEntity.ok(agendaService.findAgendaById(id));
     }
     
     @GetMapping("/usuario/{id}")
     public ResponseEntity<List<AgendaEntity>> getAgendaByUserId(@PathVariable("id") Integer id){
-        return new ResponseEntity(agendaService.findAllByAgendaByUserId(id), HttpStatus.OK);
+        return ResponseEntity.ok(agendaService.findAllByAgendaByUserId(id));
     }
     
     @PostMapping("")
@@ -64,7 +61,6 @@ public class AgendaAPIController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         
         agenda.setUsuarioId(user.getId());
-        agenda.setData(Date.valueOf(LocalDate.now()));
         
         agendaService.createAgenda(agenda);       
         return new ResponseEntity(HttpStatus.CREATED);

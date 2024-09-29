@@ -1,6 +1,5 @@
 package com.lhause.wend.LHouseWeb.service;
 
-import com.lhause.wend.LHouseWeb.data.ProdutoEntity;
 import com.lhause.wend.LHouseWeb.data.ProdutoVendaEntity;
 import com.lhause.wend.LHouseWeb.data.VendaEntity;
 import com.lhause.wend.LHouseWeb.data.VendaRepository;
@@ -34,7 +33,7 @@ public class VendaService {
         vendaEntity.setNumeroCartao(venda.getCompra().getNumeroCartao());
         vendaEntity.setNumeroParcelas(venda.getCompra().getNumeroParcelas());
         vendaEntity.setTipoPagamento(venda.getCompra().getTipoPagamento());
-        vendaEntity.setValor(venda.getCompra().getTotal());
+        vendaEntity.setValor(venda.getCompra().getTotalCompra());
         
         vendaRepository.save(vendaEntity);
         return vendaEntity;
@@ -48,8 +47,8 @@ public class VendaService {
         List<ProdutoVendaEntity> produtoVenda = produtoVendaService.findAllProdutoVendaByVendaId(id);
         
         Venda v = new Venda();
-        v.setCompra(new Compra());
         
+        v.setCompra(new Compra());
         v.setId(vendaEntity.getId());
         v.setClienteId(vendaEntity.getClienteId());
         v.setData(vendaEntity.getData());

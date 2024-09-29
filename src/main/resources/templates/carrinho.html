@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Carrinho de compras</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/bootstrap/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/Style.css}">
+    <script th:src="@{/jquery/jquery.js}"></script>
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Tipo</th>
+                        <th>Valor</th>
+                        <th>Quantidade</th>
+                        <th>Total</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tablebody">
+                    
+                </tbody>
+            </table>
+            <p>Total: <span id="totaltext"></span></p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-1">
+                        <a class="text-white" th:href="@{/loja}"><button onclick="setCarrinho()" class="btn btn-secondary">Voltar</button></a>
+                    </div>
+                    <div class="col-sm-9">
+                        <a class="text-white" th:href="@{/loja/finalizar}"><button onclick="setCarrinho()" class="btn btn-secondary">Finalizar Compra</button></a>                    
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-secondary" onclick="clearCarrinho()">Limpar Carrinho</button>               
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="popup">
+            <div class="popup-content">
+                <h1>Editar</h1>
+                <hr>
+                <input type="number" name="quantidade text" id="quantidadeText" placeholder="Quantidade" onkeyup="console.log('as')">
+                <p>Total: <span id="popupTotal">xx</span></p>
+                <button class="btn btn-success" onclick="setProduto()">OK</button>
+                <button class="btn btn-danger" onclick="removerProduto()">Remover</button>
+            </div>
+        </div>
+    </main>
+    <script th:src="@{/js/carrinho.js}"></script>
+</body>
+
+</html>

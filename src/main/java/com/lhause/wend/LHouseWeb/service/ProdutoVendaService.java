@@ -21,6 +21,16 @@ public class ProdutoVendaService {
         produtoVendaRepository.save(produtoVenda);
         return produtoVenda;
     }
+    
+    public ProdutoVendaEntity createProdutoVenda(Integer quantidade, Integer produtoId, Integer vendaId) {
+        var produtoVenda = new ProdutoVendaEntity();
+        produtoVenda.setId(null);
+        produtoVenda.setProdutoId(produtoId);
+        produtoVenda.setQuantidade(quantidade);
+        produtoVenda.setVendaId(vendaId);
+        produtoVendaRepository.save(produtoVenda);
+        return produtoVenda;
+    }
 
     public List<ProdutoVendaEntity> findAllProdutoVendaByVendaId(Integer vendaId) {
         return produtoVendaRepository.findAllProdutosInVenda(vendaId);

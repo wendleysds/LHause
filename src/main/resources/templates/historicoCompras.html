@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Pesquisar compra</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/bootstrap/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/Style.css}">
+    <script th:src="@{/jquery/jquery.js}"></script>
+</head>
+
+<body>
+
+    <main class="container">
+        <h1>Procurar venda</h1>
+        <hr>
+            <form id="searchForm">
+                <label for="number">ID:</label>
+                <input type="number" id="vendaId" name="vendaI" required>
+                <Input type="submit" value="Pesquisar">
+            </form>
+        <div>
+            <hr>
+            <p>Data: <span id="vendaData"></span></p>
+            <p>Nome cliente: <span id="nomeCliente"></span></p>
+            <p>Id cliente: <span id="idCliente"></span></p>
+            <hr>
+            <h4>Itens:</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Valor Unitario</th>
+                        <th>Quantidade</th>
+                        <th>Valor Total</th>
+                    </tr>
+                </thead>
+                <tbody id="produtos">
+                    <tr th:each="produto : ${produtos}">
+                        <td th:text="${produto.id}"></td>
+                        <td th:text="${produto.nome}"></td>
+                        <td th:text="${produto.valorUnitario}"></td>
+                        <td th:text="${produto.quantidade}"></td>
+                        <td th:text="${produto.total}"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>Total: R$<span id="total"></span></p>
+        </div>
+       <a class="text-white" th:href="@{/home}"><button class="btn btn-secondary">Voltar</button></a>
+    </main>
+    <script th:src="@{/bootstrap/bootstrap.js}"></script>
+    <script th:src="@{/js/procurarCompras.js}"></script>
+</body>
+
+</html>
