@@ -1,0 +1,130 @@
+a{
+    text-decoration: none !important;
+}
+
+.login-pag-form a {
+    text-decoration: underline !important;
+    color: blue;
+}
+
+.login-pag-form button {
+    border: none;
+    background-color: inherit;
+}
+
+.login-pag-form input[type="text"] {
+    height: 34px;
+    width: 350px;
+}
+
+.login-pag-form input[type="password"] {
+    height: 34px;
+    width: 350px;
+}
+
+.login-pag-form input[type="submit"] {
+    height: 40px;
+    width: 100px;
+}
+
+
+.sign-pag-form input[type="text"] {
+    height: 34px;
+    width: 350px;
+}
+
+.sign-pag-form input[type="password"] {
+    height: 34px;
+    width: 350px;
+}
+
+.sign-pag-form input[type="email"] {
+    height: 34px;
+    width: 350px;
+}
+
+.form-center > div {
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    margin-right: 17%;
+}
+
+.home{
+    text-align: center;  
+}
+
+.home > h1{
+    margin-bottom: 50px;
+}
+
+.home > div > a > *{
+    margin: 20px;
+    height: 50px;
+    width: 200px;
+}
+
+.agendamento > div{
+    display: flex;
+    gap: 50px;
+    padding-top: 40px;
+}
+
+.agendamento button{
+    width: 120px;
+    height: 40px;
+    border-radius: 10px;
+}
+
+.agendamento > h2{
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.agendamento > hr{
+    margin-bottom: 30px;
+}
+
+.agendar > div{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    margin-right: 17%;
+}
+
+.agendar h1{
+    text-align: center;
+    margin-bottom: 40px;
+    margin-top: 60px;
+}
+
+.agendar form > *{
+    margin: 8px;
+}
+
+.agendar-tabela{
+    border: 2px solid black;
+    width: 150px;
+    padding: 10px;
+}
+
+.agendar ul{
+    list-style: none;
+    margin-left: -10px;
+}
+
+.produto-form h1{
+    text-align: center;
+    margin: 30px;
+}
+
+.produto-form > form{
+    margin: auto;
+    width: 30%;
+    padding: 10px;
+    margin-right: 34.6%;
+}
+
+.produto-form > form > input{
+    width: 100%;
+}

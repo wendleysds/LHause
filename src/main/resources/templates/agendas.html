@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Agendar</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/bootstrap/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/Style.css}">
+</head>
+
+<body>
+
+    <main class="agendamento container">
+        <h2>Seus Agendamentos</h2>
+        <hr>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Data Agendamento</th>
+                    <th>Tempo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="agenda : ${agendas}">
+                    <td th:text="${agenda.data}"></td>
+                    <td th:text="${agenda.tempo}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div>
+            <a class="text-white" th:href="@{/home}"><button class="btn btn-secondary">Voltar</button>></a>
+            <a class="text-white" th:href="@{/agenda/cadastrar}"><button class="btn btn-primary">Novo Agendamento</button>></a>
+        </div>
+    </main>
+</body>
+
+</html>
