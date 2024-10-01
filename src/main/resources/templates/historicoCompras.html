@@ -39,13 +39,6 @@
                     </tr>
                 </thead>
                 <tbody id="produtos">
-                    <tr th:each="produto : ${produtos}">
-                        <td th:text="${produto.id}"></td>
-                        <td th:text="${produto.nome}"></td>
-                        <td th:text="${produto.valorUnitario}"></td>
-                        <td th:text="${produto.quantidade}"></td>
-                        <td th:text="${produto.total}"></td>
-                    </tr>
                 </tbody>
             </table>
             <p>Total: R$<span id="total"></span></p>

@@ -58,8 +58,8 @@ function removerProduto() {
 
 function clearCarrinho() {
     carrinho = [];
-    table.innerHTML = "";
     setCarrinho();
+    updateTable();
 }
 
 function setCarrinho() {

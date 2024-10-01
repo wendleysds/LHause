@@ -18,7 +18,7 @@ public class Venda {
     private Compra compra;
     private int clienteId;
     private int funcionarioId; 
-    private List<ProdutoVendaEntity> produtos;
+    private List<ProdutoVendaEntity> produtos = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -61,6 +61,9 @@ public class Venda {
     }
     
     public List<ProdutoVendaEntity> getProdutos() {
+        if(produtos == null){
+            produtos = new ArrayList<>();
+        }
         return produtos;
     }
 

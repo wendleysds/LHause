@@ -38,7 +38,7 @@ public class LojaController {
         if(userRoleIsCliente(request))
             return "forbidden";
         
-        return "";
+        return "historicoCompras";
     }
     
     @GetMapping("/carrinho")
@@ -49,21 +49,11 @@ public class LojaController {
         return "carrinho";
     }
     
-    @GetMapping("/carrinho/{produtoId}")
-    public String carrinhoProduto(@PathVariable("produtoId") Integer produtoId, Model model, HttpServletRequest request){
-        if(userIsNotLogged(request))
-            return "redirect:/login";
-        
-        model.addAttribute("produtoId", produtoId);
-        
-        return "";
-    }
-    
     @GetMapping("/finalizar")
     public String finalizarCompra(HttpServletRequest request){
         if(userIsNotLogged(request))
             return "redirect:/login";
         
-        return "";
+        return "finalizarCompra";
     }
 }

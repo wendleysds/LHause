@@ -13,6 +13,14 @@ public class CarrinhoProduto {
     private ProdutoEntity produto;
     private Integer quantidade;
 
+    public CarrinhoProduto() {
+    }
+    
+    public CarrinhoProduto(ProdutoEntity produto, Integer quantidade) {
+        this.produto = produto;
+        this.quantidade = quantidade;
+    }
+    
     public ProdutoEntity getProduto() {
         return produto;
     }

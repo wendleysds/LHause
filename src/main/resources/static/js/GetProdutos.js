@@ -48,7 +48,7 @@ function setCarrinho() {
 }
 
 function addProdutoCarrinho(produtoId) {
-    p = produtos.find(x => x.id == produtoId);
+    p = produtos.find(x => x.id === produtoId);
     carrinho.push({produto: p, quantidade: 1});
 }
 

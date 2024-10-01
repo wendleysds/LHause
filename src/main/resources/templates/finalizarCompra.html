@@ -7,13 +7,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" th:href="@{/css/finalizarCompra.css}">
+    <link rel="stylesheet" th:href="@{/bootstrap/bootstrap.css}">
     <script th:src="@{/jquery/jquery.js}"></script>
+
+    <link rel="stylesheet" href="../static/bootstrap/bootstrap.css">
+    <link rel="stylesheet" href="../static/css/finalizarCompra.css">
 </head>
 
 <body>
     <main class="center">
-        <a class="text-black" th:href="@{/loja/carrinho}"><button>Cancelar Pagamento</button></a>
-        <form class="container" th:action="@{/loja/compra/finalizar}" th:object="${compra}" method="POST">
+        <a th:href="@{/loja/carrinho}"><button class="btn btn-secondary">Cancelar Pagamento</button></a>
+        <form class="container" th:action="@{/api/venda/finalizar}" th:object="${compra}" method="POST">
             <article id="pagamento-cartao" class="cartao-area">
                 <div class="text-center"><b>PAGAMENTO CARTÃO DE CRÉDITO</b></div> <br>
                 <div class="row">
@@ -39,7 +43,7 @@
             </article>
             <article class="confirm-area">
                 <p><span class="negrito">Total: R$</span><span th:text="${total}"></span></p>
-                <input type="submit" value="Pagar">
+                <input class="btn btn-primary" type="submit" value="Pagar">
             </article>
         </form>
         <br><br>

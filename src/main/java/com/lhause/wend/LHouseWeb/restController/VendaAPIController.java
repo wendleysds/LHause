@@ -31,68 +31,70 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/venda")
 public class VendaAPIController {
-    
+
     @Autowired
     private VendaService vendaService;
-    
+
     @Autowired
     private ProdutoService produtoService;
-    
+
     @Autowired
     private UserService userService;
-    
+
     @Autowired
     private ProdutoVendaService produtoVendaService;
-    
+
     @GetMapping("/{id}")
-    public ResponseEntity<VendaPesquisa> searchVendaById(HttpServletRequest request, @PathVariable("id") Integer id){
-        if(userIsNotLogged(request) || userRoleIsCliente(request))
+    public ResponseEntity searchVendaById(HttpServletRequest request, @PathVariable("id") Integer id) {
+        if (userIsNotLogged(request) || userRoleIsCliente(request)) {
             return new ResponseEntity(HttpStatus.FORBIDDEN);
-        
-        var venda = vendaService.findVendaById(id);
-        
+        }
+
+        Venda venda = vendaService.findVendaById(id);
         if(venda == null)
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         
         VendaPesquisa vendaPesquisa = new VendaPesquisa();
-        List<CarrinhoProduto> produtos = new ArrayList<CarrinhoProduto>();
         
+        var p = new ArrayList<CarrinhoProduto>();
         for(var pve : venda.getProdutos()){
-            var carrinho = new CarrinhoProduto();
-            var produto = produtoService.findProdutoById(pve.getProdutoId());
-            
-            carrinho.setProduto(produto);
-            carrinho.setQuantidade(pve.getQuantidade()); 
-            produtos.add(carrinho);
+            p.add(new CarrinhoProduto(
+                    produtoService.findProdutoById(pve.getProdutoId()),
+                    pve.getQuantidade()
+            ));
         }
+        var cliente = userService.findUserById(venda.getClienteId());
         
-        vendaPesquisa.setCliente(userService.findUserById(venda.getClienteId()));
-        vendaPesquisa.setVenda(venda);
-        vendaPesquisa.setProdutos(produtos);
+        vendaPesquisa.setClienteId(cliente.getId());
+        vendaPesquisa.setClienteNome(cliente.getNome());
+        vendaPesquisa.setData(venda.getData());
+        vendaPesquisa.setProdutos(p);
         
         return ResponseEntity.ok(vendaPesquisa);
     }
-    
+
     @PostMapping("/finalizar")
-    public ResponseEntity createVenda(HttpServletRequest request,@RequestBody Compra compra){
-        if(userIsNotLogged(request))
+    public ResponseEntity createVenda(HttpServletRequest request, @RequestBody Compra compra) {
+        if (userIsNotLogged(request)) {
             return new ResponseEntity(HttpStatus.FORBIDDEN);
-        
-        if(compra.getProdutos().size() <= 0)
+        }
+
+        if (compra.getProdutos().size() <= 0) {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
-        
+        }
+
         var user = getUser(request);
-        
+
         var venda = new Venda();
-        
+
         venda.setClienteId(user.getId());
         venda.setCompra(compra);
         venda.setData(Date.valueOf(LocalDate.now()));
         venda.setFuncionarioId(18);
         var vendaId = vendaService.createVenda(venda).getId();
-        
-        for(var produtos : compra.getProdutos()){
-            produtoVendaService.createProdutoVenda(produtos.getQuantidade(),produtos.getProduto().getId(), vendaId);
+
+        for (var produtos : compra.getProdutos()) {
+            produtoVendaService.createProdutoVenda(produtos.getQuantidade(), produtos.getProduto().getId(), vendaId);
             produtoService.updateEstoque(produtos.getProduto().getId(), (produtos.getProduto().getEstoque() - produtos.getQuantidade()));
         }
 
