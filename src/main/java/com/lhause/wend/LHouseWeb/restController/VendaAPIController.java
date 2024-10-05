@@ -13,7 +13,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.sql.Date;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -98,6 +97,6 @@ public class VendaAPIController {
             produtoService.updateEstoque(produtos.getProduto().getId(), (produtos.getProduto().getEstoque() - produtos.getQuantidade()));
         }
 
-        return new ResponseEntity(HttpStatus.CREATED);
+        return new ResponseEntity(vendaId,HttpStatus.CREATED);
     }
 }

@@ -17,8 +17,8 @@ form.addEventListener("submit", (e) => {
                 window.location.href = ("/home");
             }
             else{
-                alert("Senha ou usuario incorretos")
+                alert("Senha ou usuario incorretos");
             }
         }
     });
-})
+});

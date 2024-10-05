@@ -11,6 +11,7 @@ import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +32,7 @@ public class CarrinhoController {
     
     private final String CARRINHO_ATTRIBUTE_NAME = "carrinho";
     private final String CARRINHO_COOKIE_NAME = "carrinho-cookie";
-
+    
     @GetMapping("")
     public ResponseEntity<List<CarrinhoProduto>> getProdutos(HttpServletRequest request) {
         return ResponseEntity.ok(getCarrinho(request));
@@ -47,6 +48,13 @@ public class CarrinhoController {
         }
         
         return new ResponseEntity(HttpStatus.NOT_FOUND);
+    }
+    
+    @DeleteMapping("")
+    public ResponseEntity clearCarrinho(HttpServletRequest request){
+        var session = request.getSession();
+        session.setAttribute(CARRINHO_ATTRIBUTE_NAME, new ArrayList<CarrinhoProduto>());
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
     
     @PostMapping("")
@@ -78,10 +86,24 @@ public class CarrinhoController {
         return new ResponseEntity(HttpStatus.OK);
     }
     
-    private List<CarrinhoProduto> getCarrinho(HttpServletRequest request) {
+    private List<CarrinhoProduto> getCarrinhoAt(HttpServletRequest request){
         var session = request.getSession();
         var carrinho = new ArrayList<CarrinhoProduto>();
-        if (session.getAttribute(CARRINHO_ATTRIBUTE_NAME) == null) {
+        
+        if(session.getAttribute(CARRINHO_ATTRIBUTE_NAME) == null){
+            session.setAttribute(CARRINHO_ATTRIBUTE_NAME, carrinho);
+            return carrinho;
+        }
+        
+        carrinho = (ArrayList<CarrinhoProduto>) session.getAttribute(CARRINHO_ATTRIBUTE_NAME);
+        return carrinho;
+    }
+    
+    private List<CarrinhoProduto> getCarrinhoCo(HttpServletRequest request){
+        var session = request.getSession();
+        var carrinho = new ArrayList<CarrinhoProduto>();
+        
+        if(session.getAttribute(CARRINHO_ATTRIBUTE_NAME) == null){
             var cookies = request.getCookies();
             if (cookies.length > 0) {
                 for (var cookie : request.getCookies()) {
@@ -98,12 +120,19 @@ public class CarrinhoController {
                     }
                 }
             }
-            
-            session.setAttribute(CARRINHO_ATTRIBUTE_NAME, carrinho);
-            return carrinho;
         }
-
-        carrinho = (ArrayList<CarrinhoProduto>) session.getAttribute(CARRINHO_ATTRIBUTE_NAME);
+        
+        return null;
+    }
+    
+    private List<CarrinhoProduto> getCarrinho(HttpServletRequest request) {      
+        List<CarrinhoProduto> carrinho = null;
+        
+        carrinho = getCarrinhoCo(request);
+        
+        if(carrinho == null)
+            return getCarrinhoAt(request);
+        
         return carrinho;
     }
     
