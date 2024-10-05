@@ -45,4 +45,11 @@ public class ProdutoService {
     public void deleteProduto(Integer id){
         produtoRepository.deleteById(findProdutoById(id).getId());
     }
+    
+    public void updateEstoque(Integer produtoId, Integer estoque){
+        var produto = findProdutoById(produtoId);
+        if(produto == null) return;   
+        estoque = estoque < 0 ? 0 : estoque;
+        produtoRepository.updateEstoque(estoque, produto.getId());
+    }
 }

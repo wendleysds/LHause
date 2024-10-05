@@ -2,7 +2,7 @@ package com.lhause.wend.LHouseWeb.service;
 
 import com.lhause.wend.LHouseWeb.data.UserEntity;
 import com.lhause.wend.LHouseWeb.data.UserRepository;
-import com.lhause.wend.LHouseWeb.Utils.Criptografar;
+import com.lhause.wend.LHouseWeb.security.Criptografar;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Finalizar Compra</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/css/finalizarCompra.css}">
+    <link rel="stylesheet" th:href="@{/bootstrap/bootstrap.css}">
+    <script th:src="@{/jquery/jquery.js}"></script>
+</head>
+
+<body>
+    <main class="center">
+        <a th:href="@{/loja/carrinho}"><button class="btn btn-secondary">Cancelar Pagamento</button></a>
+        <form id="form">
+            <article id="pagamento-cartao" class="cartao-area">
+                <div class="text-center"><b>PAGAMENTO CARTÃO DE CRÉDITO</b></div> <br>
+                <div class="row">
+                    <div class="input-area offset-3 col-6">
+                        <label for="numeroC">Numero</label>
+                        <input type="text" name="numeroCartao" id="numeroC" required>
+                        <span hidden id="invalido" style="font-size: 12px;">Número de cartão invalido</span> <br><br>
+                        <label for="titularC">Titular</label>
+                        <input type="text" name="titularText" id="titularC" required> <br><br>
+                        <label for="codSegC">Cód. Segurança</label>
+                        <input type="text" name="codSec" id="codSegC" required> <br><br>
+                        <label for="parcelaS">Parcelas</label>
+                        <select name="numeroParcelas" id="parcelaS">
+                            <option value="1" selected>1x</option>
+                            <option value="2">2x</option>
+                            <option value="3">3x</option>
+                            <option value="4">4x</option>
+                            <option value="5">5x</option>
+                        </Select>
+                    </div>
+                </div>
+                <br>
+            </article>
+            <article class="confirm-area">
+                <p><span class="negrito">Total: R$</span><span id="total"></span></p>
+                <input class="btn btn-primary" type="submit" value="Pagar">
+            </article>
+        </form>
+    </main>
+    <div class="popup" id="comprapopup">
+        <div class="popup-content">
+            <h1 style="color: rgb(4, 207, 4);">PAGAMENTO CONCLUIDO</h1>
+            <hr>
+            <span>Codigo de sua compra: <b id="compraId">ID</b> (anote para retirada na loja)</span><br><br>
+            <button class="btn btn-primary" onclick="window.location.href = ('/loja');">OK</button>
+        </div>
+    </div>
+
+    <div class="popup" id="loginpopup">
+        <div class="popup-content">
+            <form id="loginForm">
+                <h1>ENTRAR</h1>
+                <hr>
+                <label for="txtLogin">Login</label><br>
+                <input type="text" name="login" id="txtLogin" required> <br>
+                <label for="txtPassword">Senha</label><br>
+                <input type="password" name="password" id="txtPassword" required> <br><br>
+                <input class="btn btn-success" type="submit" value="Entrar">
+            </form>
+        </div>
+    </div>
+    <script th:src="@{/js/finalizarCompra.js}"></script>
+</body>
+
+</html>

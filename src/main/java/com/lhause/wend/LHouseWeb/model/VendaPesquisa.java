@@ -1,5 +1,8 @@
 package com.lhause.wend.LHouseWeb.model;
 
+import com.lhause.wend.LHouseWeb.data.UserEntity;
+import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Component;
 
@@ -9,42 +12,34 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class VendaPesquisa {
-    private Integer vendaID;
-    private Integer idCliente;
-    private String nomeCliente;
-    private Venda venda;
-    private List<CarrinhoProduto> produtos;
 
-    public Integer getVendaID() {
-        return vendaID;
+    private Integer clienteId;
+    private String ClienteNome;
+    private Date data;
+    private List<CarrinhoProduto> produtos = new ArrayList<>();
+
+    public Integer getClienteId() {
+        return clienteId;
     }
 
-    public void setVendaID(Integer vendaID) {
-        this.vendaID = vendaID;
+    public void setClienteId(Integer clienteId) {
+        this.clienteId = clienteId;
     }
 
-    public Integer getIdCliente() {
-        return idCliente;
+    public String getClienteNome() {
+        return ClienteNome;
     }
 
-    public void setIdCliente(Integer idCliente) {
-        this.idCliente = idCliente;
+    public void setClienteNome(String ClienteNome) {
+        this.ClienteNome = ClienteNome;
     }
 
-    public String getNomeCliente() {
-        return nomeCliente;
+    public Date getData() {
+        return data;
     }
 
-    public void setNomeCliente(String nomeCliente) {
-        this.nomeCliente = nomeCliente;
-    }
-
-    public Venda getVenda() {
-        return venda;
-    }
-
-    public void setVenda(Venda venda) {
-        this.venda = venda;
+    public void setData(Date data) {
+        this.data = data;
     }
 
     public List<CarrinhoProduto> getProdutos() {
@@ -54,6 +49,4 @@ public class VendaPesquisa {
     public void setProdutos(List<CarrinhoProduto> produtos) {
         this.produtos = produtos;
     }
-
-    
 }
