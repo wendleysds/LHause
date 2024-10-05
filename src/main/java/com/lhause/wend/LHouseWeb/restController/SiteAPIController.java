@@ -1,5 +1,6 @@
 package com.lhause.wend.LHouseWeb.restController;
 
+import com.lhause.wend.LHouseWeb.Utils.CheckUser;
 import com.lhause.wend.LHouseWeb.data.UserEntity;
 import com.lhause.wend.LHouseWeb.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,6 +26,9 @@ public class SiteAPIController {
     
     @PostMapping("/login")
     public ResponseEntity login(HttpServletRequest request, @RequestBody Map<String, Object> loginData){
+        
+        if(CheckUser.userIsLogged(request))
+            return new ResponseEntity<>(HttpStatus.METHOD_NOT_ALLOWED);
         
         var user = userService.findUser((String)loginData.get("login"), (String)loginData.get("password"));
         

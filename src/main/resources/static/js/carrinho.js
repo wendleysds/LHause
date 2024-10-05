@@ -6,9 +6,9 @@ let carrinho = [];
 
 let carrinhoIndex;
 
-window.addEventListener('beforeunload', function (e) {
+window.onbeforeunload = function(){
     setCarrinho();
-});
+};
 
 $.ajax({
     url: '/carrinho',
@@ -20,18 +20,17 @@ $.ajax({
     }
 });
 
-totalText.innerHTML = `R$${totalCarrinho(carrinho)}`;
-
 function updateTable() {
     table.innerHTML = "";
     for (let i = 0; i < carrinho.length; i++) {
+        totalText.innerHTML = `R$${totalCarrinho(carrinho)}`;
         loadTable(carrinho[i], i);
     }
 }
 
 function updatePopupText() {
-    totalPopupText.innerHTML = carrinho[carrinhoIndex].quantidade * carrinho[carrinhoIndex].produto.valorUnitario;
-    console.log("atualizado o textooo");
+    totalPopupText.textContent = `R$${carrinho[carrinhoIndex].quantidade * carrinho[carrinhoIndex].produto.valorUnitario}`;
+    updateTable();
 }
 
 function editProduto(id) {
@@ -97,7 +96,6 @@ function clamp(value, min, max) {
 }
 
 function loadTable(carrinhoProduto, index) {
-
     let tr = document.createElement("tr");
     let tdNome = document.createElement("td");
     tdNome.textContent = carrinhoProduto.produto.nome;
@@ -118,6 +116,10 @@ function loadTable(carrinhoProduto, index) {
 
     let editButton = document.createElement("button");
     editButton.textContent = "Editar";
+    
+    editButton.classList.add("btn");
+    editButton.classList.add("btn-primary");
+    
     editButton.addEventListener("click", function () {
         editProduto(index);
     });

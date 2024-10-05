@@ -49,7 +49,16 @@ function setCarrinho() {
 
 function addProdutoCarrinho(produtoId) {
     p = produtos.find(x => x.id === produtoId);
+    c = carrinho.find(x => x.produto.id === produtoId);
+    
+    if(c != null){
+        let amount = carrinho[carrinho.indexOf(c)].quantidade++;
+        alert(`adicionado '${p.nome}' x '${amount}' -> '${amount+1}'`);
+        return;
+    }
+    
     carrinho.push({produto: p, quantidade: 1});
+    alert(`adicionado '${p.nome}' x 1`);
 }
 
 function createProduto(produto) {
@@ -67,6 +76,10 @@ function createProduto(produto) {
     valor.textContent = `R$${produto.valorUnitario}`;
     estoque.textContent = produto.estoque;
     button.textContent = "Adicionar ao carrinho";
+    
+    button.classList.add("btn");
+    button.classList.add("btn-primary");
+    
     button.addEventListener("click", function () {
         addProdutoCarrinho(produto.id);
     });

@@ -1,11 +1,8 @@
 package com.lhause.wend.LHouseWeb.controller;
 
 import static com.lhause.wend.LHouseWeb.Utils.CheckUser.*;
-import com.lhause.wend.LHouseWeb.service.ProdutoService;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,11 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/loja")
 public class LojaController {
     
-    @Autowired
-    private ProdutoService produtoService;
-    
     @GetMapping("")
-    public String index(HttpServletRequest request, Model model){
+    public String index(HttpServletRequest request){
         if(userIsNotLogged(request))
             return "redirect:/login";
         

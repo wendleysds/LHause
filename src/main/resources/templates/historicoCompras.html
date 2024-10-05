@@ -19,7 +19,7 @@
             <form id="searchForm">
                 <label for="number">ID:</label>
                 <input type="number" id="vendaId" name="vendaI" required>
-                <Input type="submit" value="Pesquisar">
+                <Input class="btn btn-primary" type="submit" value="Pesquisar">
             </form>
         <div>
             <hr>
@@ -41,7 +41,7 @@
                 <tbody id="produtos">
                 </tbody>
             </table>
-            <p>Total: R$<span id="total"></span></p>
+            <p>Total: R$<span id="total">0.00</span></p>
         </div>
        <a class="text-white" th:href="@{/home}"><button class="btn btn-secondary">Voltar</button></a>
     </main>

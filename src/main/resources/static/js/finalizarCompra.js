@@ -16,10 +16,10 @@ $.ajax({
     contentType: 'application/json',
     success: function (data) {
         carrinho = data;
+        updateTotal();
     }
 });
 
-total.textContent = totalCarrinho(carrinho) / parcela.value;
 parcela.onchange = function () {
     updateTotal();
 }
@@ -84,7 +84,7 @@ loginForm.addEventListener("submit", (e) => {
 });
 
 function updateTotal() {
-    total.textContent = totalCarrinho(carrinho) / parcela.value;
+    total.textContent = (totalCarrinho(carrinho) / parcela.value).toFixed(2);
 }
 
 function clearCarrinho() {

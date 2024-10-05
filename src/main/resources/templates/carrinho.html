@@ -37,10 +37,10 @@
                         <a class="text-white" th:href="@{/loja}"><button onclick="setCarrinho()" class="btn btn-secondary">Voltar</button></a>
                     </div>
                     <div class="col-sm-9">
-                        <a class="text-white" th:href="@{/loja/finalizar}"><button onclick="setCarrinho()" class="btn btn-secondary">Finalizar Compra</button></a>                    
+                        <a class="text-white" th:href="@{/loja/finalizar}"><button onclick="setCarrinho()" class="btn btn-success">Finalizar Compra</button></a>                    
                     </div>
                     <div class="col-sm-2">
-                        <button class="btn btn-secondary" onclick="clearCarrinho()">Limpar Carrinho</button>               
+                        <button class="btn btn-danger" onclick="clearCarrinho()">Limpar Carrinho</button>               
                     </div>
                 </div>
             </div>
@@ -50,7 +50,7 @@
             <div class="popup-content">
                 <h1>Editar</h1>
                 <hr>
-                <input type="number" name="quantidade text" id="quantidadeText" placeholder="Quantidade" onkeyup="console.log('as')">
+                <input type="number" name="quantidade text" id="quantidadeText" placeholder="Quantidade" onkeyup="updatePopupText()">
                 <p>Total: <span id="popupTotal">xx</span></p>
                 <button class="btn btn-success" onclick="setProduto()">OK</button>
                 <button class="btn btn-danger" onclick="removerProduto()">Remover</button>

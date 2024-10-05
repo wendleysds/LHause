@@ -31,7 +31,7 @@ searchForm.addEventListener("submit", function (event) {
                 total += p.total;
             }
             
-            totalVenda.textContent = total;
+            totalVenda.textContent = total.toFixed(2);
         },
         error: function () {
             console.log("erro");
