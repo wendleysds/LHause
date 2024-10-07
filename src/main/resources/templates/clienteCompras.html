@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Compras</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script th:src="@{/jquery/jquery.js}"></script>
+    <link rel="stylesheet" th:href="@{/bootstrap/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/compra.css}" />
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <h1>Suas Compras</h1>
+            <div class="table-content">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Itens</th>
+                            <th>Total</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody">
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <a th:href="@{/loja}"><button class="btn btn-secondary">Voltar</button></a>
+        </div>
+        <div class="comprainfo">
+            <div>
+                <p><b>Data:</b> <span id="compraData"></span></p>
+                <p><b>Id compra:</b> <span id="idCompra"></span></p>
+                <hr>
+                <h4>Itens:</h4>
+                <div class="compra-itens">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Valor Unitario</th>
+                                <th>Quantidade</th>
+                                <th>Valor Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="produtos">
+                        </tbody>
+                    </table>
+                </div>
+                <p>Total: R$<span id="total">0.00</span></p>
+                <button onclick="closePopup()" class="btn btn-secondary">Fechar</button>
+            </div>
+        </div>
+    </main>
+    <script th:src="@{/js/compras.js}"></script>
+</body>
+
+</html>
