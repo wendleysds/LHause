@@ -23,6 +23,14 @@ public class LojaController {
         return "loja";
     }
     
+    @GetMapping("/compras")
+    public String compras(HttpServletRequest request){
+        if(userIsNotLogged(request))
+            return "redirect:/login";
+        
+        return "clienteCompras";
+    }
+    
     @GetMapping("/pesquisa/venda")
     public String pesquisarVenda(HttpServletRequest request){
         if(userIsNotLogged(request))

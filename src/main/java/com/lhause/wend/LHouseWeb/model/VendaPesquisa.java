@@ -13,11 +13,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class VendaPesquisa {
 
+    private Integer id;
     private Integer clienteId;
     private String ClienteNome;
     private Date data;
     private List<CarrinhoProduto> produtos = new ArrayList<>();
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+    
     public Integer getClienteId() {
         return clienteId;
     }
