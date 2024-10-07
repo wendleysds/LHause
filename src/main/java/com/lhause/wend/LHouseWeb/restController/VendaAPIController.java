@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.sql.Date;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,42 @@ public class VendaAPIController {
     @Autowired
     private ProdutoVendaService produtoVendaService;
 
+    @GetMapping("/user")
+    public ResponseEntity getUserVendas(HttpServletRequest request) {
+        if (userIsNotLogged(request)) {
+            return new ResponseEntity(HttpStatus.FORBIDDEN);
+        }
+
+        var user = getUser(request);
+
+        List<Venda> vendas = vendaService.findVendasByClienteId(user.getId());
+
+        if(vendas.size() <= 0)
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        
+        ArrayList<VendaPesquisa> vendaPesquisas = new ArrayList<>(vendas.size());
+        for (var v : vendas) {
+            VendaPesquisa vendaPesquisa = new VendaPesquisa();
+            var p = new ArrayList<CarrinhoProduto>();
+            for (var pve : v.getProdutos()) {
+                p.add(new CarrinhoProduto(
+                        produtoService.findProdutoById(pve.getProdutoId()),
+                        pve.getQuantidade()
+                ));
+            }
+            
+            vendaPesquisa.setId(v.getId());
+            vendaPesquisa.setClienteId(user.getId());
+            vendaPesquisa.setClienteNome(user.getNome());
+            vendaPesquisa.setData(v.getData());
+            vendaPesquisa.setProdutos(p);
+            
+            vendaPesquisas.add(vendaPesquisa);
+        }
+
+        return ResponseEntity.ok(vendaPesquisas);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity searchVendaById(HttpServletRequest request, @PathVariable("id") Integer id) {
         if (userIsNotLogged(request) || userRoleIsCliente(request)) {
@@ -50,25 +87,27 @@ public class VendaAPIController {
         }
 
         Venda venda = vendaService.findVendaById(id);
-        if(venda == null)
+        if (venda == null) {
             return new ResponseEntity(HttpStatus.NO_CONTENT);
-        
+        }
+
         VendaPesquisa vendaPesquisa = new VendaPesquisa();
-        
+
         var p = new ArrayList<CarrinhoProduto>();
-        for(var pve : venda.getProdutos()){
+        for (var pve : venda.getProdutos()) {
             p.add(new CarrinhoProduto(
                     produtoService.findProdutoById(pve.getProdutoId()),
                     pve.getQuantidade()
             ));
         }
         var cliente = userService.findUserById(venda.getClienteId());
-        
+
+        vendaPesquisa.setId(venda.getId());
         vendaPesquisa.setClienteId(cliente.getId());
         vendaPesquisa.setClienteNome(cliente.getNome());
         vendaPesquisa.setData(venda.getData());
         vendaPesquisa.setProdutos(p);
-        
+
         return ResponseEntity.ok(vendaPesquisa);
     }
 
@@ -97,6 +136,6 @@ public class VendaAPIController {
             produtoService.updateEstoque(produtos.getProduto().getId(), (produtos.getProduto().getEstoque() - produtos.getQuantidade()));
         }
 
-        return new ResponseEntity(vendaId,HttpStatus.CREATED);
+        return new ResponseEntity(vendaId, HttpStatus.CREATED);
     }
 }
