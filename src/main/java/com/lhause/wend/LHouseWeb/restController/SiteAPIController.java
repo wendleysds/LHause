@@ -37,6 +37,7 @@ public class SiteAPIController {
         else{
             var session = request.getSession();      
             
+            userService.UpdateUserLastLogin(user.getId());
             session.setAttribute("current-user", user);
             
             return new ResponseEntity<>(HttpStatus.OK);

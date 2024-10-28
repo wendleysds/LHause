@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @author Wendley S
  */
 @Controller
-public class SiteController {
+public class LoginController {
     
     @GetMapping("/")
     public String index(HttpServletRequest request){
