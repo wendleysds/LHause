@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Cadastro Computador</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/bootstrap/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/Style.css}">
+</head>
+
+<body>
+
+    <main class="container">
+        <br><br><br><br>
+        <div class="row">
+            <h1 class="text-center">Cadastrar Computador</h1>
+            <form class="sign-pag-form form-center" th:action="@{/cadastro/computador}" th:object="${computador}" method="POST">
+                <div>
+                    <br>
+                    <label for="txtEsp">Especificações</label> <br>
+                    <textarea id="txtEsp" name="especificacoes" rows="4" cols="40" th:value="*{especificacoes}" required></textarea> <br>
+                    <label for="txtJog">Jogos</label> <br>
+                    <textarea id="txtJog" name="jogos" rows="4" cols="40" th:value="*{jogos}" required></textarea>     
+                </div>
+                <br>
+                <article class="text-center">
+                    <input class="btn btn-success" type="submit" value="Cadastrar">
+                </article>
+            </form>
+            <a class="text-white" th:href="@{/cadastro/editar}"><button class="btn btn-secondary">Voltar</button></a>
+        </div>
+    </main>
+    <script th:href="@{/bootstrap/bootstrap.js}"></script>
+</body>
+
+</html>

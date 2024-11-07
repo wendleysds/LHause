@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Cadastrar Produto</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/bootstrap/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/Style.css}">
+</head>
+
+<body>
+
+    <main class="container produto-form">
+        <h1>Cadatrar Produto</h1>
+        <form th:action="@{/cadastro/produto}" th:object="${produto}" method="POST">
+            <label for="txtNome">Nome:</label>
+            <input type="text" name="nome" id="txtNome" th:value="*{nome}" required>
+            <label for="txtTipo">Tipo:</label>
+            <input type="text" name="tipo" id="txtTipo" th:value="*{tipo}" required>
+            <label for="numValor">Valor:</label>
+            <input type="number" name="valorUnitario" id="numValor" step=0.1 min="0" value="0" th:value="*{valorUnitario}" required>
+            <label for="numEstoque">Estoque:</label>
+            <input type="number" name="estoque" id="numEstoque" min="0" value="0" th:value="*{estoque}" required>
+            <br><br>
+            <input type="hidden" id="numId" name="id" th:value="*{id}">
+            <div class="text-center">
+                <input class="btn btn-success" type="submit" value="Cadastrar">
+            </div>
+        </form>
+        <a class="text-white" th:href="@{/cadastro/editar}"><button class="btn btn-secondary">Voltar</button></a>
+    </main>
+    <script th:href="@{/bootstrap/bootstrap.js}"></script>
+</body>
+
+</html>

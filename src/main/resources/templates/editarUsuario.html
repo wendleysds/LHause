@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Cadastro</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/bootstrap/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/Style.css}">
+</head>
+
+<body>
+
+    <main class="container">
+        <br><br><br><br>
+        <div class="row">
+            <h1 class="text-center">Editando</h1>
+            <form class="sign-pag-form form-center" th:action="@{/cadastro/usuario}" th:object="${usuario}" method="POST">
+                <div>
+                    <br>
+                    <label for="txtNome">Nome</label> <br>
+                    <input type="text" name="nome" id="txtNome" th:value="*{nome}" required> <br>
+                    <label for="txtCpf">Cpf</label> <br>
+                    <input type="text" name="cpf" id="txtCpf" th:value="*{cpf}" readonly> <br>
+                    <label for="txtEmail">Email</label> <br>
+                    <input type="email" name="email" id="txtEmail" th:value="*{email}" required> <br>
+                    <label for="txtTelefone">Telefone</label> <br>
+                    <input type="text" name="telefone" id="Telefone" th:value="*{telefone}" required> <br>
+                </div>
+                <br>
+                <article class="text-center">
+                    <input class="btn btn-success" type="submit" value="Cadastrar">
+                </article>
+            </form>
+            <a class="text-white" th:href="@{/}"><button class="btn btn-secondary">Voltar</button></a>
+            <br><br>
+        </div>
+    </main>
+</body>
+
+</html>
