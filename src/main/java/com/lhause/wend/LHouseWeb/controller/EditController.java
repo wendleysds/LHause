@@ -1,7 +1,6 @@
 package com.lhause.wend.LHouseWeb.controller;
 
 import static com.lhause.wend.LHouseWeb.Utils.CheckUser.getUser;
-import static com.lhause.wend.LHouseWeb.Utils.CheckUser.userIsNotLogged;
 import static com.lhause.wend.LHouseWeb.Utils.CheckUser.userRoleIsCliente;
 import com.lhause.wend.LHouseWeb.service.ComputadorService;
 import com.lhause.wend.LHouseWeb.service.ProdutoService;
@@ -31,7 +30,7 @@ public class EditController {
     
     @GetMapping("/usuario")
     public String editarCurrentUsuario(HttpServletRequest request, Model model) {
-        if (userIsNotLogged(request) || userRoleIsCliente(request)) {
+        if (userRoleIsCliente(request)) {
             return "forbidden";
         }
 
@@ -42,7 +41,7 @@ public class EditController {
 
     @GetMapping("/usuario/{id}")
     public String editarUsuario(HttpServletRequest request, Model model, @PathVariable("id") Integer id) {
-        if (userIsNotLogged(request) || userRoleIsCliente(request)) {
+        if (userRoleIsCliente(request)) {
             return "forbidden";
         }
         
@@ -57,7 +56,7 @@ public class EditController {
 
     @GetMapping("/produto/{id}")
     public String editarProduto(HttpServletRequest request, Model model, @PathVariable("id") Integer id) {
-        if (userIsNotLogged(request) || userRoleIsCliente(request)) {
+        if (userRoleIsCliente(request)) {
             return "forbidden";
         }
         
@@ -72,7 +71,7 @@ public class EditController {
 
     @GetMapping("/computador/{id}")
     public String editarComputador(HttpServletRequest request, Model model, @PathVariable("id") Integer id) {
-        if (userIsNotLogged(request) || userRoleIsCliente(request)) {
+        if (userRoleIsCliente(request)) {
             return "forbidden";
         }
 

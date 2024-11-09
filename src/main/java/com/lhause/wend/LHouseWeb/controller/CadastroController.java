@@ -29,7 +29,7 @@ public class CadastroController {
 
     @GetMapping("/produto")
     public String cadastrarProduto(HttpServletRequest request, Model model) {
-        if (userIsNotLogged(request) || userRoleIsCliente(request)) {
+        if (userRoleIsCliente(request)) {
             return "forbidden";
         }
         
@@ -40,7 +40,7 @@ public class CadastroController {
 
     @GetMapping("/computador")
     public String cadastrarComputador(HttpServletRequest request, Model model) {
-        if (userIsNotLogged(request) || userRoleIsCliente(request)) {
+        if (userRoleIsCliente(request)) {
             return "forbidden";
         }
 

@@ -75,7 +75,7 @@ public class AgendaAPIController {
     
     @DeleteMapping("/{id}")
     public ResponseEntity deleteAgenda(HttpServletRequest request, @PathVariable Integer id){
-        if(userRoleIsCliente(request) || userIsNotLogged(request))
+        if(userRoleIsCliente(request))
             return new ResponseEntity(HttpStatus.FORBIDDEN);
         
         var user = getUser(request);

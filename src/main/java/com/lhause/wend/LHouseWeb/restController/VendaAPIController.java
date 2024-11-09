@@ -82,7 +82,7 @@ public class VendaAPIController {
 
     @GetMapping("/{id}")
     public ResponseEntity searchVendaById(HttpServletRequest request, @PathVariable("id") Integer id) {
-        if (userIsNotLogged(request) || userRoleIsCliente(request)) {
+        if (userRoleIsCliente(request)) {
             return new ResponseEntity(HttpStatus.FORBIDDEN);
         }
 
