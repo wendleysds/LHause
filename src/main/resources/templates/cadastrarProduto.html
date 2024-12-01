@@ -8,13 +8,13 @@
 
     <link rel="stylesheet" th:href="@{/bootstrap/bootstrap.css}" />
     <link rel="stylesheet" th:href="@{/css/Style.css}">
+    <script th:src="@{/jquery/jquery.js}"></script>
 </head>
-
 <body>
 
     <main class="container produto-form">
         <h1>Cadatrar Produto</h1>
-        <form th:action="@{/cadastro/produto}" th:object="${produto}" method="POST">
+        <form th:object="${produto}">
             <label for="txtNome">Nome:</label>
             <input type="text" name="nome" id="txtNome" th:value="*{nome}" required>
             <label for="txtTipo">Tipo:</label>
@@ -29,9 +29,9 @@
                 <input class="btn btn-success" type="submit" value="Cadastrar">
             </div>
         </form>
-        <a class="text-white" th:href="@{/cadastro/editar}"><button class="btn btn-secondary">Voltar</button></a>
+        <a class="text-white" th:href="@{/editar/produtos}"><button class="btn btn-secondary">Voltar</button></a>
     </main>
-    <script th:href="@{/bootstrap/bootstrap.js}"></script>
+    <script th:src="@{/js/produtos/produto.js}"></script>
 </body>
 
 </html>
