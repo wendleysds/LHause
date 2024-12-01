@@ -33,6 +33,10 @@ public class UserService {
         return userRepository.findByLoginAndPassword(login, Criptografar.md5(password));
     }
     
+    public UserEntity findUserByLogin(String login){
+        return userRepository.findByLogin(login);
+    }
+    
     public UserEntity updateUser(Integer id, UserEntity userRequest){
         UserEntity user = findUserById(id);
         
