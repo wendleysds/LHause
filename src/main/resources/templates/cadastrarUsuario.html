@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Cadastro</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/bootstrap/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/Style.css}">
+    <script th:src="@{/jquery/jquery.js}"></script>
+</head>
+
+<body>
+
+    <main class="container">
+        <br><br><br><br>
+        <div class="row">
+            <h1 class="text-center">Bem Vindo ao LHause!!</h1>
+            <form class="sign-pag-form form-center" id="form">
+                <div>
+                    <br>
+                    <label for="txtNome">Nome</label> <br>
+                    <input type="text" name="nome" id="txtNome" required placeholder="Mario.."> <br>
+                    <label for="txtCpf">Cpf</label> <br>
+                    <input type="text" name="cpf" id="txtCpf" required minlength="11" placeholder="123.456.789-01"> <br>
+                    <label for="txtEmail">Email</label> <br>
+                    <input type="email" name="email" id="txtEmail" required placeholder="exemple@gmail.com"> <br>
+                    <label for="txtTelefone">Telefone</label> <br>
+                    <input type="text" name="telefone" id="Telefone" required placeholder="(12) 3456-7890"> <br>
+                    <label for="txtUsuario">Nome de usuario</label> <br>
+                    <input type="text" name="login" id="txtUsuario" required> <br>
+                    <label for="txtSenha">Senha</label> <br>
+                    <input type="password" name="senha" id="txtSenha" required>  <br>
+                </div>
+                <br>
+                <article class="text-center">
+                    <input class="btn btn-success" type="submit" value="Cadastrar">
+                </article>
+            </form>
+            <a class="text-white" th:href="@{/editar}"><button class="btn btn-secondary">Voltar</button></a>
+            <br><br>
+        </div>
+    </main>
+    <script th:src="@{/js/usuario/postUser.js}"></script>
+</body>
+
+</html>

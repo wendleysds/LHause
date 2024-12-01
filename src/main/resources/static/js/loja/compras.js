@@ -38,11 +38,10 @@ function visualizarCompra(index) {
 function insertProduto(carrinhoProduto) {
     let row = produtosTable.insertRow();
 
-    row.insertCell(0).innerHTML = carrinhoProduto.produto.id;
-    row.insertCell(1).innerHTML = carrinhoProduto.produto.nome;
-    row.insertCell(2).innerHTML = carrinhoProduto.produto.valorUnitario;
-    row.insertCell(3).innerHTML = carrinhoProduto.quantidade;
-    row.insertCell(4).innerHTML = carrinhoProduto.total;
+    row.insertCell(0).innerHTML = carrinhoProduto.produto.nome;
+    row.insertCell(1).innerHTML = carrinhoProduto.produto.valorUnitario;
+    row.insertCell(2).innerHTML = carrinhoProduto.quantidade;
+    row.insertCell(3).innerHTML = carrinhoProduto.total;
 }
 
 function loadCompras(compra, index) {

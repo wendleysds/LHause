@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Editar Agendamentos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/bootstrap/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/Style.css}">
+    <script th:src="@{/jquery/jquery.js}"></script>
+</head>
+
+<body>
+
+    <main class="container">
+        <br>
+        <h1 class="text-center">Agendamentos</h1>
+        <hr>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Dada</th>
+                    <th>ID do computador</th>
+                    <th>Tempo</th>
+                    <th>ID do usuario</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+                <tr th:each="agenda : ${agendas}">
+                    <td th:text="${agenda.id}"></td>
+                    <td th:text="${agenda.data}"></td>
+                    <td th:text="${agenda.computadorId}"></td>
+                    <td th:text="${agenda.tempo}"></td>
+                    <td th:text="${agenda.usuarioId}"></td>
+                    <td><a class="text-white" th:href="@{/deletar/agendamento/{id}(id=${agenda.id})}"><button class="btn btn-primary">Remover</button>></a></td>
+                </tr>
+            </tbody>
+        </table><br>
+        <a class="text-white" th:href="@{/editar}"><button class="btn btn-secondary">Voltar</button></a>
+        <a class="text-white" th:href="@{/agenda/cadastrar}"><button class="btn btn-primary">Cadastrar Novo</button></a>
+    </main>
+    <script th:src="@{/js/agendamentos/getAgendamentos.js}"></script>  
+</body>
+
+</html>

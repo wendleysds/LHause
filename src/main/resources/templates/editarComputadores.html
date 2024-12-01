@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Editar Computadores</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/bootstrap/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/Style.css}">
+    <script th:src="@{/jquery/jquery.js}"></script>
+</head>
+
+<body>
+    <main class="container">
+        <br>
+        <h1 class="text-center">Agendamentos</h1>
+        <hr>
+        <br>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Ocupado</th>
+                    <th>Ligado</th>
+                    <th>Jogos</th>
+                    <th>Especificações</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="table-body">
+            </tbody>
+        </table><br>
+        <a class="text-white" th:href="@{/editar}"><button class="btn btn-secondary">Voltar</button></a>
+        <a class="text-white" th:href="@{/cadastro/computador}"><button class="btn btn-primary">Cadastrar Novo</button></a>
+    </main>
+    <script th:src="@{/js/computador/getComputador.js}"></script>
+</body>
+
+</html>

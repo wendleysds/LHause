@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Computador</title>
+
+    <link rel="stylesheet" th:href="@{/bootstrap/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/editarComputador.css}">
+    <script th:src="@{/jquery/jquery.js}"></script>
+</head>
+
+<body>
+    <main>
+        <section>
+            <h1 class="center">Computador</h1>
+            <hr>
+            <form th:object="${computador}">
+                <label for="especificacoes">Especificações</label> <br>
+                <textarea id="especificacoes" name="especificacoes" rows="4" cols="40" th:value="*{especificacoes}"
+                    required></textarea> <br>
+                <label for="jogos">Jogos</label> <br>
+                <textarea id="jogos" name="jogos" rows="4" cols="40" th:value="*{jogos}" required></textarea><br>
+                <div class="checkboxes">
+                    <div>
+                        <label for="ocupado">Ocupado</label>
+                        <input type="checkbox" name="ocupado" id="ocupado" th:checked="*{ocupado}">
+                    </div>
+                    <div>
+                        <label for="ligado">Ligado</label>
+                        <input type="checkbox" name="ligado" id="ligado" th:checked="*{ligado}">
+                    </div>
+                </div>
+                <div class="center">
+                    <input class="btn btn-success" type="submit" value="Enviar">
+                </div>
+                <a class="text-white" th:href="@{/editar/produtos}"><button class="btn btn-secondary">Voltar</button></a>
+                <input type="hidden" name="id" id="id" th:value="*{id}">
+            </form>
+        </section>
+        <script th:src="@{/js/computador/computador.js}"></script>
+    </main>
+</body>
+
+</html>

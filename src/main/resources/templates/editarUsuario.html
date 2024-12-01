@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Cadastro</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" th:href="@{/bootstrap/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/css/Style.css}">
+    <script th:src="@{/jquery/jquery.js}"></script>
+</head>
+
+<body>
+
+    <main class="container">
+        <br>
+        <div class="row">
+            <h1 class="text-center">Editando</h1>
+            <form class="sign-pag-form form-center" th:object="${usuario}">
+                <div>
+                    <br>
+                    <label for="nome">Nome</label> <br>
+                    <input type="text" name="nome" id="nome" required placeholder="Mario.." th:value="*{nome}" > <br>
+                    <label for="tipo">Tipo</label> <br>
+                    <input type="text" name="tipo" id="tipo" required placeholder="cliente/funcionario" th:value="*{tipo}"> <br>
+                    <label for="cpf">Cpf</label> <br>
+                    <input type="text" name="cpf" id="cpf" required minlength="11" placeholder="123.456.789-01" th:value="*{cpf}"> <br>
+                    <label for="email">Email</label> <br>
+                    <input type="email" name="email" id="email" required placeholder="exemple@gmail.com" th:value="*{email}"> <br>
+                    <label for="telefone">Telefone</label> <br>
+                    <input type="text" name="telefone" id="telefone" required placeholder="(12) 3456-7890" th:value="*{telefone}"> <br>
+                    <label for="login">Nome de usuario</label> <br>
+                    <input type="text" name="login" id="login" required th:value="*{login}"> <br>
+                    <label for="senha">Senha</label> <br>
+                    <input type="password" name="senha" id="senha" required th:value="*{senha}"> <br>
+
+                    <input type="hidden" name="ultimo login" id="ultimoLogin" th:value="*{ultimoLogin}">
+                    <input type="hidden" name="id" id="id" th:value="*{id}">
+                </div>
+                <br>
+                <article class="text-center">
+                    <input class="btn btn-success" type="submit" value="Cadastrar">
+                </article>
+            </form>
+            <a class="text-white" th:href="@{/}"><button class="btn btn-secondary">Voltar</button></a>
+            <br><br>
+        </div>
+        <script th:src="@{/js/usuario/putUsuario.js}"></script>
+    </main>
+</body>
+
+</html>
