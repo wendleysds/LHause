@@ -33,7 +33,7 @@ public class AgendaAPIController {
     private ComputadorService computadorService;
     
     @GetMapping("")
-    public ResponseEntity<List<AgendaEntity>> getAllAgenda(@PathVariable("id") Integer id){
+    public ResponseEntity<List<AgendaEntity>> getAllAgenda(){
         return ResponseEntity.ok(agendaService.findAllAgendas());
     }
     
@@ -66,27 +66,16 @@ public class AgendaAPIController {
         return new ResponseEntity(HttpStatus.CREATED);
     }
     
-    /*@PutMapping("/{id}")
-    public ResponseEntity updateAgenda(HttpServletRequest request, @PathVariable Integer id, @Valid @RequestBody AgendaEntity agenda){
-        
-        
-        return new ResponseEntity(HttpStatus.METHOD_NOT_ALLOWED);
-    }*/
-    
     @DeleteMapping("/{id}")
     public ResponseEntity deleteAgenda(HttpServletRequest request, @PathVariable Integer id){
         if(userRoleIsCliente(request))
             return new ResponseEntity(HttpStatus.FORBIDDEN);
         
-        var user = getUser(request);
         var agenda = agendaService.findAgendaById(id);
         if(agenda == null)
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
-        
-        if(agenda.getUsuarioId() != user.getId())
-            return new ResponseEntity(HttpStatus.FORBIDDEN);
             
-        agendaService.deleteAgenda(id);
+        agendaService.deleteAgenda(agenda.getId());
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 }

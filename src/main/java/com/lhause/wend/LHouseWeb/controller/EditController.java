@@ -1,7 +1,7 @@
 package com.lhause.wend.LHouseWeb.controller;
 
-import static com.lhause.wend.LHouseWeb.Utils.CheckUser.getUser;
-import static com.lhause.wend.LHouseWeb.Utils.CheckUser.userRoleIsCliente;
+import static com.lhause.wend.LHouseWeb.Utils.CheckUser.*;
+import com.lhause.wend.LHouseWeb.service.AgendaService;
 import com.lhause.wend.LHouseWeb.service.ComputadorService;
 import com.lhause.wend.LHouseWeb.service.ProdutoService;
 import com.lhause.wend.LHouseWeb.service.UserService;
@@ -28,6 +28,54 @@ public class EditController {
     @Autowired
     private ComputadorService computadorService;
     
+    @Autowired
+    private AgendaService agendamentoService;
+    
+    @GetMapping
+    public String editarPage(HttpServletRequest request){
+        if (userRoleIsCliente(request)) {
+            return "forbidden";
+        }
+        
+        return "editarCadastros";
+    }
+    
+    @GetMapping("/produtos")
+    public String editarProdutoPage(HttpServletRequest request, Model model){
+        if (userRoleIsCliente(request)) {
+            return "forbidden";
+        }
+        
+        return "editarProdutos";
+    }
+    
+    @GetMapping("/computadores")
+    public String editarComputadorPage(HttpServletRequest request, Model model){
+        if (userRoleIsCliente(request)) {
+            return "forbidden";
+        }
+        
+        return "editarComputadores";
+    }
+    
+    @GetMapping("/agendamentos")
+    public String editarAgendamentoPage(HttpServletRequest request, Model model){
+        if (userRoleIsCliente(request)) {
+            return "forbidden";
+        }
+        
+        return "editarAgendamentos";
+    }
+    
+    @GetMapping("/usuarios")
+    public String editarUsuarioPage(HttpServletRequest request, Model model){
+        if (userRoleIsCliente(request)) {
+            return "forbidden";
+        }
+        
+        return "editarUsuarios";
+    }
+    
     @GetMapping("/usuario")
     public String editarCurrentUsuario(HttpServletRequest request, Model model) {
         if (userRoleIsCliente(request)) {
@@ -51,7 +99,7 @@ public class EditController {
         
         model.addAttribute("usuario", user);
         
-        return "cadastrarUsuario";
+        return "editarUsuario";
     }
 
     @GetMapping("/produto/{id}")

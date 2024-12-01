@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Wendley S
  */
 @RestController
-@RequestMapping("api/computador")
+@RequestMapping("/api/computador")
 public class ComputadorAPIController {
     
     @Autowired
