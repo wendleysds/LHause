@@ -38,13 +38,19 @@ public class AgendaController {
     }
     
     @GetMapping("/cadastrar")
-    public String selecionarComputador(Model model){
+    public String selecionarComputador(HttpServletRequest request, Model model){
+        if(userIsNotLogged(request))
+            return "redirect:/login";
+        
         model.addAttribute("computadores", computadorService.findAllComputadores());
         return "selecionarComputador";
     }
     
     @GetMapping("/cadastrar/{id}")
-    public String agendar(@PathVariable("id") Integer id, Model model){
+    public String agendar(HttpServletRequest request, @PathVariable("id") Integer id, Model model){
+        if(userIsNotLogged(request))
+            return "redirect:/login";
+        
         model.addAttribute("computadorId", id);
         model.addAttribute("today", LocalDate.now());
         return "cadastrarAgenda";

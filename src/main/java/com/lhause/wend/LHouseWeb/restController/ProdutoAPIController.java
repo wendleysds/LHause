@@ -40,7 +40,7 @@ public class ProdutoAPIController{
     
     @PostMapping("")
     public ResponseEntity createProduto(HttpServletRequest request, @RequestBody ProdutoEntity produto){
-        if(userRoleIsCliente(request))
+        if(userIsNotLogged(request) || userRoleIsCliente(request))
             return new ResponseEntity(HttpStatus.FORBIDDEN);
         
         if(produto == null)
@@ -52,7 +52,7 @@ public class ProdutoAPIController{
     
     @PutMapping("/{id}")
     public ResponseEntity<ProdutoEntity> updateProduto(HttpServletRequest request, @RequestBody ProdutoEntity produtoRes, @PathVariable Integer id){
-        if(userRoleIsCliente(request))
+        if(userIsNotLogged(request) || userRoleIsCliente(request))
             return new ResponseEntity(HttpStatus.FORBIDDEN);
         
         if(produtoService.findProdutoById(id) == null)
@@ -63,7 +63,7 @@ public class ProdutoAPIController{
     
     @DeleteMapping("/{id}")
     public ResponseEntity deleteProduto(HttpServletRequest request, @PathVariable Integer id){
-        if(userRoleIsCliente(request))
+        if(userIsNotLogged(request) || userRoleIsCliente(request))
             return new ResponseEntity(HttpStatus.FORBIDDEN);
         
         var produto = produtoService.findProdutoById(id);

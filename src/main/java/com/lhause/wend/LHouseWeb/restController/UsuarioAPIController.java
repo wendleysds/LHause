@@ -30,16 +30,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/usuario")
 public class UsuarioAPIController {
     
-    private static Pattern onlyNumberPattern = Pattern.compile("\\d+");
-    private static Pattern foneNumberPatter = Pattern.compile("^\\d{2}[ ]\\d{4,5}[ ]\\d{4}$");
-    private static Pattern emailPatter = Pattern.compile("^[A-Za-z0-9._%+-]+[@][A-Za-z0-9.-]+[.][A-Za-z]{2,}$");
+    private final static Pattern ONLY_NUMBER_PATTERN = Pattern.compile("\\d+");
+    private final static Pattern FONE_NUMBER_PATTERN = Pattern.compile("^\\d{2}[ ]\\d{4,5}[ ]\\d{4}$");
+    private final static Pattern EMAIL__PATTERN = Pattern.compile("^[A-Za-z0-9._%+-]+[@][A-Za-z0-9.-]+[.][A-Za-z]{2,}$");
     
     @Autowired
     private UserService userService;
     
     @GetMapping("")
     public ResponseEntity<List<UserEntity>> getAllUsers(HttpServletRequest request){
-        if(userRoleIsCliente(request))
+        if(userIsNotLogged(request) || userRoleIsCliente(request))
             return new ResponseEntity(HttpStatus.FORBIDDEN);
         
         return ResponseEntity.ok(userService.findAllUsers());
@@ -47,7 +47,7 @@ public class UsuarioAPIController {
     
     @GetMapping("/{id}")
     public ResponseEntity<UserEntity> getUserById(HttpServletRequest request, @PathVariable("id") Integer id){
-        if(userRoleIsCliente(request))
+        if(userIsNotLogged(request) || userRoleIsCliente(request))
             return new ResponseEntity(HttpStatus.FORBIDDEN);
         
         var user = userService.findUserById(id);
@@ -63,11 +63,11 @@ public class UsuarioAPIController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         
         var cpfFormated = removeCharacters(user.getCpf(), ".-");
-        if(!Cpf.cpfValido(cpfFormated) || !onlyNumberPattern.matcher(cpfFormated).matches())
+        if(!Cpf.cpfValido(cpfFormated) || !ONLY_NUMBER_PATTERN.matcher(cpfFormated).matches())
             return new ResponseEntity("cpf invalido",HttpStatus.BAD_REQUEST);
         
         String phoneFormated = removeCharacters(user.getTelefone(), " ()-");
-        if(!onlyNumberPattern.matcher(cpfFormated).matches() || phoneFormated.length() < 10 || phoneFormated.length() > 11){
+        if(!ONLY_NUMBER_PATTERN.matcher(cpfFormated).matches() || phoneFormated.length() < 10 || phoneFormated.length() > 11){
             return new ResponseEntity("numero de telefone invalido",HttpStatus.BAD_REQUEST);
         }
         
@@ -77,11 +77,11 @@ public class UsuarioAPIController {
             phoneFormated = phoneFormated.replaceFirst("(.{2})(.{5})(.{4})", "$1 $2 $3");
         }
         
-        if(!foneNumberPatter.matcher(phoneFormated).matches()){
+        if(!FONE_NUMBER_PATTERN.matcher(phoneFormated).matches()){
             return new ResponseEntity("numero de telefone invalido (formatacao incorreta)",HttpStatus.BAD_REQUEST);
         }
         
-        if(!emailPatter.matcher(user.getEmail()).matches()){
+        if(!EMAIL__PATTERN.matcher(user.getEmail()).matches()){
             return new ResponseEntity("email invalido",HttpStatus.BAD_REQUEST);
         }
         
@@ -105,7 +105,7 @@ public class UsuarioAPIController {
     
     @PutMapping("/{id}")
     public ResponseEntity<UserEntity> updateUser(HttpServletRequest request, @RequestBody UserEntity userNew, @PathVariable("id") Integer id){
-        if(userRoleIsCliente(request))
+        if(userIsNotLogged(request) || userRoleIsCliente(request))
             return new ResponseEntity(HttpStatus.FORBIDDEN);
         
         var userOld = userService.findUserById(id);

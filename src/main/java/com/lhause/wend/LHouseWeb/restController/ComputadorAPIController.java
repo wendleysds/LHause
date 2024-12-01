@@ -26,7 +26,7 @@ public class ComputadorAPIController {
     private ComputadorService computadorService;
     
     @GetMapping("")
-    public ResponseEntity getAllComputadores(){
+    public ResponseEntity getAllComputadores(){    
         return ResponseEntity.ok(computadorService.findAllComputadores());
     }
     
@@ -37,7 +37,7 @@ public class ComputadorAPIController {
     
     @PostMapping("")
     public ResponseEntity createComputador(HttpServletRequest request, @RequestBody ComputadorEntity computador){
-        if(userRoleIsCliente(request))
+        if(userIsNotLogged(request) || userRoleIsCliente(request))
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
             
         if(computador == null)

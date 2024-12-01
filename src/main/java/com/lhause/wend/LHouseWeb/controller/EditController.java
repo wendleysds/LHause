@@ -33,7 +33,7 @@ public class EditController {
     
     @GetMapping
     public String editarPage(HttpServletRequest request){
-        if (userRoleIsCliente(request)) {
+        if (userIsNotLogged(request) || userRoleIsCliente(request)) {
             return "forbidden";
         }
         
@@ -42,7 +42,7 @@ public class EditController {
     
     @GetMapping("/produtos")
     public String editarProdutoPage(HttpServletRequest request, Model model){
-        if (userRoleIsCliente(request)) {
+        if (userIsNotLogged(request) || userRoleIsCliente(request)) {
             return "forbidden";
         }
         
@@ -51,7 +51,7 @@ public class EditController {
     
     @GetMapping("/computadores")
     public String editarComputadorPage(HttpServletRequest request, Model model){
-        if (userRoleIsCliente(request)) {
+        if (userIsNotLogged(request) || userRoleIsCliente(request)) {
             return "forbidden";
         }
         
@@ -60,7 +60,7 @@ public class EditController {
     
     @GetMapping("/agendamentos")
     public String editarAgendamentoPage(HttpServletRequest request, Model model){
-        if (userRoleIsCliente(request)) {
+        if (userIsNotLogged(request) || userRoleIsCliente(request)) {
             return "forbidden";
         }
         
@@ -69,7 +69,7 @@ public class EditController {
     
     @GetMapping("/usuarios")
     public String editarUsuarioPage(HttpServletRequest request, Model model){
-        if (userRoleIsCliente(request)) {
+        if (userIsNotLogged(request) || userRoleIsCliente(request)) {
             return "forbidden";
         }
         
@@ -78,7 +78,7 @@ public class EditController {
     
     @GetMapping("/usuario")
     public String editarCurrentUsuario(HttpServletRequest request, Model model) {
-        if (userRoleIsCliente(request)) {
+        if (userIsNotLogged(request) || userRoleIsCliente(request)) {
             return "forbidden";
         }
 
@@ -89,7 +89,7 @@ public class EditController {
 
     @GetMapping("/usuario/{id}")
     public String editarUsuario(HttpServletRequest request, Model model, @PathVariable("id") Integer id) {
-        if (userRoleIsCliente(request)) {
+        if (userIsNotLogged(request) || userRoleIsCliente(request)) {
             return "forbidden";
         }
         
@@ -104,7 +104,7 @@ public class EditController {
 
     @GetMapping("/produto/{id}")
     public String editarProduto(HttpServletRequest request, Model model, @PathVariable("id") Integer id) {
-        if (userRoleIsCliente(request)) {
+        if (userIsNotLogged(request) || userRoleIsCliente(request)) {
             return "forbidden";
         }
         
@@ -119,7 +119,7 @@ public class EditController {
 
     @GetMapping("/computador/{id}")
     public String editarComputador(HttpServletRequest request, Model model, @PathVariable("id") Integer id) {
-        if (userRoleIsCliente(request)) {
+        if (userIsNotLogged(request) || userRoleIsCliente(request)) {
             return "forbidden";
         }
 
