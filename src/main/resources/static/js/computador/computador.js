@@ -6,7 +6,6 @@ let ligado = document.getElementById('ligado');
 let especificacoes = document.getElementById('especificacoes');
 let jogos = document.getElementById('jogos');
 
-tdEspecificacoes.innerText = computador.especificacoes;
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
