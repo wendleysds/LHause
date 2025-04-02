@@ -1,4 +1,4 @@
-# LHouse
+# LHouse (Projeto de TCC)
 
 ### Status do projeto:
 **Desenvolvimento**
